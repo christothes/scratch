@@ -22,6 +22,9 @@ namespace FoodTruckApi.Tests
         private Mock<ICosmosDbRepository<FoodTruck>> repoMock;
         private FoodTruckController target;
         private CosmosResult<FoodTruck> items;
+        private double invalidLongitude = 181;
+        private double invalidLatitude = 91;
+        private int invaidDistance = -1;
 
         [TestInitialize]
         public void TestInit()
@@ -72,6 +75,25 @@ namespace FoodTruckApi.Tests
             //Assert
             Assert.AreEqual(StatusCodes.Status500InternalServerError, response.StatusCode);
             logMock.Verify(m => m.Log<object>(LogLevel.Error, It.IsAny<EventId>(), It.IsAny<object>(), ex, It.IsAny<Func<object, Exception, string>>()));
+        }
+
+        [TestMethod]
+        public async Task Get_ArgumentValidation()
+        {
+            //Arrange
+
+            repoMock.Setup(m => m.GetItemsAsync(It.IsAny<Expression<Func<FoodTruck, bool>>>()))
+                .ReturnsAsync(new CosmosResult<FoodTruck>());
+
+            //Act
+            var response1 = (await target.Get(invalidLongitude, 0, 1000)).Result as BadRequestObjectResult;
+            var response2 = (await target.Get(0, invalidLatitude, 1000)).Result as BadRequestObjectResult;
+            var response3 = (await target.Get(0, 0, invaidDistance)).Result as BadRequestObjectResult;
+
+            //Assert
+            Assert.AreEqual(StatusCodes.Status400BadRequest, response1.StatusCode);
+            Assert.AreEqual(StatusCodes.Status400BadRequest, response2.StatusCode);
+            Assert.AreEqual(StatusCodes.Status400BadRequest, response3.StatusCode);
         }
     }
 }
