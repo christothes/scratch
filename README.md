@@ -17,7 +17,7 @@ GET /api/foodtruck
 | `longitude` | double | Longitude to search from, in decimal degrees. Valid values are from -180.0 to 180.0 |
 | `latitude` | double | Latitude to search from, in decimal degrees. Valid values are from -90.0 to 90.0 |
 
-**Example queey**
+**Example query**
 
 ```
 curl https://nearbyfoodtrucks.azurewebsites.net/api/foodtruck?distance=2500&longitude=-122.4329697&latitude=37.72756654
