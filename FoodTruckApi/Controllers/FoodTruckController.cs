@@ -46,7 +46,7 @@ namespace FoodTruckApi.Controllers
             try
             {
                 result = await _repo.GetItemsAsync(t =>
-                    t.Location.Distance(new Point(-122.4329697, 37.72756654)) < distance);
+                    t.Location.Distance(new Point(longitude, latitude)) < distance);
                 _logger.LogInformation($"Get: ItemCount={result.Items.Count}, RequestChage={result.RequestCharge}");
             }
             catch (Exception ex)
