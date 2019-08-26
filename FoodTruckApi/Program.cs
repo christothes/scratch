@@ -31,6 +31,7 @@ namespace FoodTruckApi
                 })
                 .ConfigureAppConfiguration((context, config) =>
                 {
+                    // In production config, use KeyVault to get secrets, and leverage the Managed Service Identity auth (AzureServiceTokenProvider)
                     if (context.HostingEnvironment.IsProduction())
                     {
                         var builtConfig = config.Build();

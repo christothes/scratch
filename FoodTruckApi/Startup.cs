@@ -7,13 +7,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Azure.Documents.Client;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
 
 namespace FoodTruckApi
 {
     public class Startup
     { 
-        private readonly ILogger _logger;
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;

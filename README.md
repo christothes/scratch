@@ -43,6 +43,7 @@ After considering the above, I decided to ingest the data into Cosmos DB and rel
 -   Offloading the search heavy listing to Cosmos allowed me to spend more time on the quality and completeness of the solution.
 
 ## Stack, Hosting, and Deployment
+-   Development environment: VS Code on Mac (out of my comfort zone of VS on Windows)
 -   Asp dot Net Core (2.2) Web Api
 -   Azure Web App
 -   Cosmos Db
@@ -69,5 +70,7 @@ Below is a list of features or enhancements to the solution that could be implem
 -   Implement an Azure Function to ingest or update data sources periodically
 -   Integration testing via `WebApplicationFactory`
 -   Swagger documentation of the API
+-   More logging
+-   More tests
 
 
